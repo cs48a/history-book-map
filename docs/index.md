@@ -49,7 +49,7 @@ In order to extract the named entities from the text the HuSpaCy NLP library <ht
 
 So recognizing the named entities ("Ausztriában") is the first task and getting the lemma ("Ausztria") out of them is the second. Furtunately HuSpaCy can offer both. (It also says about itself that it is industrial grade and has CPU archicteture-specific optimization, but these were not the main aspects considered at the choice.)
 
-### First check
+### First check
 
 With the dictionary of the counted lemmas a first check of the results can be done. For the sake of simplicity and further manipulation the dictionary is converted into a DataFrame.
 
@@ -94,7 +94,7 @@ For the manual input phase the following guidelines were followed
 It was decided that historical people will be included and multiple countries (at most 10) will be allowed. The result of the manual input is in "countries.csv". It has the following structure:
 (id, count, Entity, Country1, ... , Country10, Countries), where the last column (Countries) contain the allowed names of the countries.
     
-### Possible issues
+### Possible issues
 
 Some issues with the text processing already turned out:
 
