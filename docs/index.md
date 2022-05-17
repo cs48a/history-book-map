@@ -6,7 +6,7 @@ The project uses basic NLP on the text of an official Hungarian history book (11
 
 ![History book map](https://cs48a.github.io/history-book-map/map.png "The resulting map of the entities in the book")
 
-Detailed link: (https://cs48a.github.io/history-book-map/map.png)
+An interactive plot is here: <https://cs48a.github.io/history-book-map/map.png>
 
 ## Problem statement
 
