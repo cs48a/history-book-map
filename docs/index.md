@@ -4,9 +4,9 @@ The goal of this project is to show how frequently the (current) countries occur
 
 The project uses basic NLP on the text of an official Hungarian history book (11th grade).
 
-![History book map](https://cs48a.github.io/history-book-map/map.png "The resulting map of the entities in the book")
+![History book map](https://cs48a.github.io/history-book-map/map.png "The colormap of the entities in the book")
 
-An interactive plot is here: <https://cs48a.github.io/history-book-map/map.png>
+An interactive plot is here: <https://cs48a.github.io/history-book-map/map.html>
 
 ## Problem statement
 
