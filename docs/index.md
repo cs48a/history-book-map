@@ -4,6 +4,10 @@ The goal of this project is to show how frequently the (current) countries occur
 
 The project uses basic NLP on the text of an official Hungarian history book (11th grade).
 
+![History book map](https://cs48a.github.io/history-book-map/map.png "The resulting map of the entities in the book")
+
+Detailed link: (https://cs48a.github.io/history-book-map/map.png)
+
 ## Problem statement
 
 Given a text containing several named entities (countries, geographic areas, people, etc.) find a mapping between those entities and the names of currently existing countries. Assuming that each entitiy can be assigned to at least one currently existing country.
@@ -56,6 +60,8 @@ At first not much suprise here: lot of Hungary, Germany, France and Europe. Appa
 An ascending sort can also give an insight: many entities only occure once and many of them are either meaningless (probably results of false tokenization/lemmatization) or they are not relevant (e.g., ISBN number and authors of the book etc.)
 
 Plotting the occurances on a histogram also confirms this: it shows a very skewed graph with over 2000 entities which have only 1 occurance. Since the point of the whole project is to create a map showing countries, which the entities most frequently associated with, therefore it is reasonable to drop these singletons. At this point there is no intent to automate mapping of the entities to countries, so the less entities the better anyway.
+
+![Entity histogram](https://cs48a.github.io/history-book-map/hist.png "Histogram of entity occurances")
 
 ## Clustering words before manual input
 
