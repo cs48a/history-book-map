@@ -4,7 +4,7 @@ The goal of this project is to show how frequently the (current) countries occur
 
 The project uses basic NLP on the text of an official Hungarian history book (11th grade).
 
-## Problem statement
+## Problem statement
 
 Given a text containing several named entities (countries, geographic areas, people, etc.) find a mapping between those entities and the names of currently existing countries. Assuming that each entitiy can be assigned to at least one currently existing country.
 By applying the mapping create a map which colors the countries according to the number of occurances of each country in the text.
@@ -13,7 +13,7 @@ The expected result is that a Hungarian history book will be mostly centered aro
 
 ## Get the book
 
-The book can be downloaded from here: https://www.tankonyvkatalogus.hu/site/kiadvany/FI-504011101_1
+The book can be downloaded from here: <https://www.tankonyvkatalogus.hu/site/kiadvany/FI-504011101_1>
 
 The book is 258 pages long and around 54MB.
 
@@ -21,21 +21,19 @@ The book is 258 pages long and around 54MB.
 
 Extracting the text requires a pdf converter which can extract textual data from a pdf. This is not trivial since the pdf standard is quite complex and was probably not constructed by having this kind of reverse engineering in mind.
 
-I tried multiple tools but Pdfminer (https://github.com/pdfminer/pdfminer.six) seemed to be most efficient. It is able to read a document page by page and return a string of the whole text.
+I tried multiple tools but Pdfminer <https://github.com/pdfminer/pdfminer.six> seemed to be most efficient. It is able to read a document page by page and return a string of the whole text.
 
 Possible issues here:
 * Page- and linebreaks split words up
 * Issues with special characters
 * Issues with odd text placement and letter spacing (e.g., title over a map, etc.)
 
-I did not bother much with coding, I simply grabbed some example code which does just what was needed.
-
 
 ## Save the output
 
 Saving the output string might come in handy so that the above step is not required to be done again. The resulting text file is 33659 lines long and contains around 927000 characters.
 
-## Extract named entities
+## Extract named entities
 
 The point of interest is to identify each named entity in the text which can be assigned to a current country. For example Napoleon -> France, Prussia -> Germany.
 
@@ -43,7 +41,7 @@ Things to consider:
 * Should historical people be included or only geographic entities?
 * Should it be 1 to 1 mapping or 1 to multiple? (e.g., Prussia -> [Germany, Poland])
 
-In order to extract the named entities from the text the HuSpaCy NLP library (https://github.com/huspacy/huspacy) was used. This is a quite recent library which has its sole focus on the Hungarian language. Hungarian is a so called agglutantive language (https://en.wikipedia.org/wiki/Agglutinative_language) which means that a word (even a named entity) can be extended with multiple suffixes depending on its role in a sentence (e.g., Austria is written as "Ausztria" in Hungarian, but "in Austria" is written as "Ausztriában" and to refer Austria as an object--as in "Austria (was attacked by France)"-- it is written as "Ausztriát (megtámadta Franciaország)".
+In order to extract the named entities from the text the HuSpaCy NLP library <https://github.com/huspacy/huspacy> was used. This is a quite recent library which has its sole focus on the Hungarian language. Hungarian is a so called agglutantive language <https://en.wikipedia.org/wiki/Agglutinative_language> which means that a word (even a named entity) can be extended with multiple suffixes depending on its role in a sentence (e.g., Austria is written as "Ausztria" in Hungarian, but "in Austria" is written as "Ausztriában" and to refer Austria as an object--as in "Austria (was attacked by France)"-- it is written as "Ausztriát (megtámadta Franciaország)".
 
 So recognizing the named entities ("Ausztriában") is the first task and getting the lemma ("Ausztria") out of them is the second. Furtunately HuSpaCy can offer both. (It also says about itself that it is industrial grade and has CPU archicteture-specific optimization, but these were not the main aspects considered at the choice.)
 
@@ -63,9 +61,9 @@ Plotting the occurances on a histogram also confirms this: it shows a very skewe
 
 Unfortunately (to my knowledge) there is no obvious or out-of-the-box solution for mapping the entities to countries. So manual data input seems inevitable, but it could be helped by groupping the similar entities together. Since no additional context is used at this point, the similarity is strictly character-based. This is, however, could help group those entities together which are basically the same, but were 'broken' either by the original text (e.g., "Amerikai Egyesült Államok" /USA/ vs "Egyesült Államok" /US/) or during the text processing/lemmatization (e.g., "Amerikai Egyesült Állam" /United State of America/ (sic!) vs. "Amerikai Egyesült Államok" /United States of America/).
 
-Using the rapidfuzz (https://github.com/maxbachmann/RapidFuzz) library the distance matrix for the remianing 817 entities was calculated. The applied metric was the partial similarity ratio. The partial similarity ratio "searches for the optimal alignment of the shorter string in the longer string and returns the fuzz.ratio for this alignment". This is suitable for handling the above mentioned cases where an entity is a partial case of another. (But it could lead to some funny cases where "DÁNIA" /DENMARK/ is groupped together with JORDÁNIA /JORDAN/.)
+Using the rapidfuzz <https://github.com/maxbachmann/RapidFuzz> library the distance matrix for the remianing 817 entities was calculated. The applied metric was the partial similarity ratio. The partial similarity ratio "searches for the optimal alignment of the shorter string in the longer string and returns the fuzz.ratio for this alignment". This is suitable for handling the above mentioned cases where an entity is a partial case of another. (But it could lead to some funny cases where "DÁNIA" /DENMARK/ is groupped together with JORDÁNIA /JORDAN/.)
 
-Using the distance matrix, entities were grouped together by hierarchical clustering (https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html). As the overall number of clusters is not known beforhand, hierarihcal clustering with a properly selected distance threshold can give a good starting point.
+Using the distance matrix, entities were grouped together by hierarchical clustering <https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html>. As the overall number of clusters is not known beforhand, hierarihcal clustering with a properly selected distance threshold can give a good starting point.
 
 ## Manual input
 
@@ -102,7 +100,7 @@ Some issues with the text processing already turned out:
 
 ## Display the data
 
-A geojson file and Plotly's choropleth_mapbox feature was used for plotting (https://plotly.com/python/mapbox-county-choropleth/).
+A geojson file and Plotly's choropleth_mapbox feature was used for plotting <https://plotly.com/python/mapbox-county-choropleth/>.
 
 The map uses logirathmic scale for the coloring, otherwise it would be less interesting with just a few countries shining bright.
 
