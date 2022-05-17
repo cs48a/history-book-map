@@ -65,7 +65,7 @@ Using the rapidfuzz <https://github.com/maxbachmann/RapidFuzz> library the dista
 
 Using the distance matrix, entities were grouped together by hierarchical clustering <https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html>. As the overall number of clusters is not known beforhand, hierarihcal clustering with a properly selected distance threshold can give a good starting point.
 
-## Manual input
+## Manual input
 
 The clusterint resulted in 635 cluster labels instead of the 817 different words. Sorting the dataframe according to assigned labels will help during the manual input of the assigned countries to each cluster since similar words are now grouped together.
 
@@ -104,7 +104,7 @@ A geojson file and Plotly's choropleth_mapbox feature was used for plotting <htt
 
 The map uses logirathmic scale for the coloring, otherwise it would be less interesting with just a few countries shining bright.
 
-## Conclusions
+## Conclusions
 
 There is not much surprise in the results. The book is centered around Hungary and the map also refelects the dominant powers of the covered period (1849-1945): Germany, UK, Russia, USA.
  
