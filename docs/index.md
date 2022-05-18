@@ -25,17 +25,14 @@ The book is 258 pages long and around 54MB.
 
 Extracting the text requires a pdf converter which can extract textual data from a pdf. This is not trivial since the pdf standard is quite complex and was probably not constructed by having this kind of reverse engineering in mind.
 
-I tried multiple tools but Pdfminer <https://github.com/pdfminer/pdfminer.six> seemed to be most efficient. It is able to read a document page by page and return a string of the whole text.
+I tried multiple tools but Pdfminer <https://github.com/pdfminer/pdfminer.six> seemed to be the most efficient/easy to use. It is able to read a document page by page and return a string of the whole text.
 
 Possible issues here:
 * Page- and linebreaks split words up
 * Issues with special characters
 * Issues with odd text placement and letter spacing (e.g., title over a map, etc.)
 
-
-## Save the output
-
-Saving the output string might come in handy so that the above step is not required to be done again. The resulting text file is 33659 lines long and contains around 927000 characters.
+The resulting text file is 33659 lines long and contains around 927000 characters.
 
 ## Extract named entities
 
